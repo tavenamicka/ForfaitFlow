@@ -139,8 +139,13 @@ Distribué sous licence **MIT**. Voir [`LICENSE`](LICENSE) pour le texte complet
 
 ## 👤 Auteur
 
-**Mickaël Tavenart** — administrateur réseau et systèmes, consultant Coatch-numérique
-Développeur full‑stack et créateur d’applications assistées par IA
+### Mickaël Tavenart
+
+**Administrateur réseau & systèmes**
+**Consultant coach‑numérique**
+**Développeur full‑stack & créateur d’applications assistées par IA**
+
+> *"L’IA comme moteur, l’humain comme destination."*
 
 - GitHub : [@tavenamicka](https://github.com/tavenamicka)
 
