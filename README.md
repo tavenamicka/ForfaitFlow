@@ -140,9 +140,9 @@ Distribué sous licence **MIT**. Voir [`LICENSE`](LICENSE) pour le texte complet
 ## 👤 Auteur
 
 **Mickaël Tavenart** — administrateur réseau et systèmes, consultant Coatch-numérique
+Développeur full‑stack et créateur d’applications assistées par IA
 
 - GitHub : [@tavenamicka](https://github.com/tavenamicka)
-- Autres projets : [Regula Flow](https://github.com/tavenamicka/regula-flow) · [NotreTab](https://github.com/tavenamicka/notretab) · [ReformoJuste](https://github.com/tavenamicka/reformojuste)
 
 ---
 
