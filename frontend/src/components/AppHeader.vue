@@ -49,7 +49,13 @@ function onLogout() {
       </div>
 
       <div class="hidden sm:flex items-center gap-4">
-        <span class="text-sm text-gray-600">{{ auth.user?.email }}</span>
+        <router-link
+          to="/mon-compte"
+          class="text-sm"
+          :class="route.name === 'mon-compte' ? 'text-forfait-800 font-medium' : 'text-gray-600 hover:text-forfait-800'"
+        >
+          {{ auth.user?.email }}
+        </router-link>
         <button @click="onLogout" class="text-sm text-forfait-600 hover:text-forfait-800 font-medium">
           Déconnexion
         </button>
@@ -84,7 +90,14 @@ function onLogout() {
         {{ link.label }}
       </router-link>
       <div class="pt-3 mt-2 border-t border-gray-100 flex items-center justify-between">
-        <span class="text-sm text-gray-600">{{ auth.user?.email }}</span>
+        <router-link
+          to="/mon-compte"
+          class="text-sm"
+          :class="route.name === 'mon-compte' ? 'text-forfait-800 font-medium' : 'text-gray-600'"
+          @click="closeMenu"
+        >
+          {{ auth.user?.email }}
+        </router-link>
         <button @click="onLogout" class="text-sm text-forfait-600 font-medium">Déconnexion</button>
       </div>
     </nav>

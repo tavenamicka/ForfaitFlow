@@ -1,9 +1,14 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 
 
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
+
+
+class ChangePasswordRequest(BaseModel):
+    ancien_mot_de_passe: str
+    nouveau_mot_de_passe: str = Field(min_length=8)
 
 
 class TokenResponse(BaseModel):

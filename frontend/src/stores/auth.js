@@ -29,5 +29,12 @@ export const useAuthStore = defineStore("auth", {
       this.user = null;
       localStorage.removeItem("forfaitflow_token");
     },
+
+    async changePassword(ancienMotDePasse, nouveauMotDePasse) {
+      await http.put("/auth/me/password", {
+        ancien_mot_de_passe: ancienMotDePasse,
+        nouveau_mot_de_passe: nouveauMotDePasse,
+      });
+    },
   },
 });

@@ -7,6 +7,7 @@ import NouvelleIntervention from "../views/NouvelleIntervention.vue";
 import FicheClient from "../views/FicheClient.vue";
 import Historique from "../views/Historique.vue";
 import Alertes from "../views/Alertes.vue";
+import MonCompte from "../views/MonCompte.vue";
 
 const routes = [
   { path: "/login", name: "login", component: Login },
@@ -31,6 +32,7 @@ const routes = [
     meta: { requiresAuth: true },
   },
   { path: "/alertes", name: "alertes", component: Alertes, meta: { requiresAuth: true } },
+  { path: "/mon-compte", name: "mon-compte", component: MonCompte, meta: { requiresAuth: true } },
 ];
 
 const router = createRouter({
