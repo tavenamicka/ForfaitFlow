@@ -4,6 +4,7 @@ import { useRoute } from "vue-router";
 import { useClientsStore } from "../stores/clients";
 import { useInterventionsStore } from "../stores/interventions";
 import RapportPeriode from "../components/RapportPeriode.vue";
+import AppHeader from "../components/AppHeader.vue";
 
 const route = useRoute();
 const clientId = Number(route.params.id);
@@ -49,14 +50,7 @@ async function onSaveIntervention({ id, payload }) {
 
 <template>
   <div class="min-h-screen bg-forfait-50">
-    <header class="bg-white shadow-sm flex items-center gap-6 px-6 py-4">
-      <router-link to="/" class="text-xl font-bold text-forfait-800">ForfaitFlow</router-link>
-      <router-link to="/clients" class="text-sm text-gray-600 hover:text-forfait-800">Clients</router-link>
-      <router-link to="/interventions/nouvelle" class="text-sm text-gray-600 hover:text-forfait-800">
-        Nouvelle intervention
-      </router-link>
-      <router-link to="/alertes" class="text-sm text-gray-600 hover:text-forfait-800">Alertes</router-link>
-    </header>
+    <AppHeader />
 
     <div v-if="client" class="p-6 max-w-5xl mx-auto space-y-6">
       <div class="flex items-center justify-between">
@@ -70,7 +64,7 @@ async function onSaveIntervention({ id, payload }) {
           v-if="periodes.length"
           v-model="selectedPeriodeId"
           @change="loadPeriode"
-          class="rounded border-gray-300"
+          class="rounded border border-gray-300 px-2 py-1"
         >
           <option v-for="p in periodes" :key="p.periode_id" :value="p.periode_id">
             {{ labelPeriode(p.periode_id) }}
@@ -78,7 +72,7 @@ async function onSaveIntervention({ id, payload }) {
         </select>
       </div>
 
-      <p v-if="!periodes.length" class="text-gray-400 text-center py-12">
+      <p v-if="!periodes.length" class="text-gray-500 text-center py-12">
         Aucune période passée pour ce client — l'historique apparaîtra après le premier renouvellement mensuel.
       </p>
 

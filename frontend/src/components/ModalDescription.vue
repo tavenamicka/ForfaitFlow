@@ -26,7 +26,7 @@ function onSave() {
         <h2 class="text-lg font-bold text-forfait-800">
           Intervention du {{ intervention.date_intervention }}
         </h2>
-        <button @click="$emit('close')" class="text-gray-400 hover:text-gray-600">✕</button>
+        <button @click="$emit('close')" aria-label="Fermer" class="text-gray-500 hover:text-gray-700">✕</button>
       </div>
 
       <template v-if="!editing">
@@ -49,7 +49,7 @@ function onSave() {
       <template v-else>
         <div>
           <label class="block text-sm font-medium text-gray-700">Niveau</label>
-          <select v-model="form.niveau" class="mt-1 w-full rounded border-gray-300">
+          <select v-model="form.niveau" class="mt-1 w-full rounded border border-gray-300 px-3 py-2">
             <option value="N1">N1</option>
             <option value="N2">N2</option>
             <option value="N3">N3</option>
@@ -61,12 +61,12 @@ function onSave() {
             v-model.number="form.duree_minutes"
             type="number"
             min="1"
-            class="mt-1 w-full rounded border-gray-300"
+            class="mt-1 w-full rounded border border-gray-300 px-3 py-2"
           />
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-700">Description</label>
-          <textarea v-model="form.description" rows="3" class="mt-1 w-full rounded border-gray-300" />
+          <textarea v-model="form.description" rows="3" class="mt-1 w-full rounded border border-gray-300 px-3 py-2" />
         </div>
         <div class="flex justify-end gap-3">
           <button type="button" @click="editing = false" class="px-4 py-2 text-gray-600">

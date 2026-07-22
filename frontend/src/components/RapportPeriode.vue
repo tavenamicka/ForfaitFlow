@@ -38,14 +38,14 @@ function onSave(event) {
         <p class="text-xs text-gray-500">N1 — Assistance</p>
         <p class="text-xl font-bold text-blue-800">
           {{ (rapport.n1.consomme_minutes / 60).toFixed(1) }}h
-          <span class="text-sm font-normal text-gray-400">/ {{ rapport.n1.forfait_h }}h</span>
+          <span class="text-sm font-normal text-gray-500">/ {{ rapport.n1.forfait_h }}h</span>
         </p>
       </div>
       <div class="bg-white rounded-lg shadow-sm p-4">
         <p class="text-xs text-gray-500">N2 — Optimisation</p>
         <p class="text-xl font-bold text-teal-800">
           {{ (rapport.n2.consomme_minutes / 60).toFixed(1) }}h
-          <span class="text-sm font-normal text-gray-400">/ {{ rapport.n2.forfait_h }}h</span>
+          <span class="text-sm font-normal text-gray-500">/ {{ rapport.n2.forfait_h }}h</span>
         </p>
       </div>
       <div class="bg-white rounded-lg shadow-sm p-4">
@@ -87,7 +87,7 @@ function onSave(event) {
             <td class="px-4 py-3 max-w-md truncate">{{ i.description }}</td>
           </tr>
           <tr v-if="!rapport.interventions.length">
-            <td colspan="4" class="px-4 py-6 text-center text-gray-400">
+            <td colspan="4" class="px-4 py-6 text-center text-gray-500">
               Aucune intervention sur cette période.
             </td>
           </tr>

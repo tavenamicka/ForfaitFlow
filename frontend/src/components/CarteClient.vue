@@ -13,7 +13,7 @@ defineProps({
         <router-link :to="`/clients/${dashboard.client_id}`" class="font-bold text-forfait-800 hover:underline">
           {{ dashboard.client_nom }}
         </router-link>
-        <p class="text-xs text-gray-400">
+        <p class="text-xs text-gray-500">
           Période du {{ dashboard.periode_debut }} au {{ dashboard.periode_fin }}
         </p>
       </div>

@@ -2,6 +2,7 @@
 import { reactive, ref, onMounted, computed } from "vue";
 import { useClientsStore } from "../stores/clients";
 import { useInterventionsStore } from "../stores/interventions";
+import AppHeader from "../components/AppHeader.vue";
 import BlocNiveau from "../components/BlocNiveau.vue";
 
 const clientsStore = useClientsStore();
@@ -75,14 +76,7 @@ async function onDelete(id) {
 
 <template>
   <div class="min-h-screen bg-forfait-50">
-    <header class="bg-white shadow-sm flex items-center gap-6 px-6 py-4">
-      <router-link to="/" class="text-xl font-bold text-forfait-800">ForfaitFlow</router-link>
-      <router-link to="/clients" class="text-sm text-gray-600 hover:text-forfait-800">Clients</router-link>
-      <router-link to="/interventions/nouvelle" class="text-sm text-forfait-800 font-medium">
-        Nouvelle intervention
-      </router-link>
-      <router-link to="/alertes" class="text-sm text-gray-600 hover:text-forfait-800">Alertes</router-link>
-    </header>
+    <AppHeader />
 
     <div class="p-6 max-w-3xl mx-auto space-y-6">
       <form @submit.prevent="onSubmit" class="bg-white rounded-lg shadow-sm p-6 space-y-4">
@@ -90,7 +84,7 @@ async function onDelete(id) {
 
         <div>
           <label class="block text-sm font-medium text-gray-700">Client</label>
-          <select v-model="form.client_id" required class="mt-1 w-full rounded border-gray-300">
+          <select v-model="form.client_id" required class="mt-1 w-full rounded border border-gray-300 px-3 py-2">
             <option value="" disabled>Sélectionner un client</option>
             <option v-for="c in clientsActifs" :key="c.id" :value="c.id">{{ c.nom }}</option>
           </select>
@@ -102,7 +96,7 @@ async function onDelete(id) {
             v-model="form.date_intervention"
             type="date"
             required
-            class="mt-1 w-full rounded border-gray-300"
+            class="mt-1 w-full rounded border border-gray-300 px-3 py-2"
           />
         </div>
 
@@ -172,7 +166,7 @@ async function onDelete(id) {
               </td>
             </tr>
             <tr v-if="!interventionsStore.interventions.length">
-              <td colspan="6" class="px-4 py-6 text-center text-gray-400">Aucune intervention.</td>
+              <td colspan="6" class="px-4 py-6 text-center text-gray-500">Aucune intervention.</td>
             </tr>
           </tbody>
         </table>

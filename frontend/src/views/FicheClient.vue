@@ -4,6 +4,7 @@ import { useRoute } from "vue-router";
 import { useClientsStore } from "../stores/clients";
 import { useInterventionsStore } from "../stores/interventions";
 import RapportPeriode from "../components/RapportPeriode.vue";
+import AppHeader from "../components/AppHeader.vue";
 import http from "../api/http";
 
 const route = useRoute();
@@ -50,14 +51,7 @@ async function downloadRapport(format) {
 
 <template>
   <div class="min-h-screen bg-forfait-50">
-    <header class="bg-white shadow-sm flex items-center gap-6 px-6 py-4">
-      <router-link to="/" class="text-xl font-bold text-forfait-800">ForfaitFlow</router-link>
-      <router-link to="/clients" class="text-sm text-gray-600 hover:text-forfait-800">Clients</router-link>
-      <router-link to="/interventions/nouvelle" class="text-sm text-gray-600 hover:text-forfait-800">
-        Nouvelle intervention
-      </router-link>
-      <router-link to="/alertes" class="text-sm text-gray-600 hover:text-forfait-800">Alertes</router-link>
-    </header>
+    <AppHeader />
 
     <div v-if="client && rapport" class="p-6 max-w-5xl mx-auto space-y-6">
       <div class="flex items-center justify-between">

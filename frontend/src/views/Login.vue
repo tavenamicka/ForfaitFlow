@@ -39,7 +39,7 @@ async function onSubmit() {
           v-model="email"
           type="email"
           required
-          class="mt-1 w-full rounded border-gray-300 shadow-sm focus:border-forfait-600 focus:ring-forfait-600"
+          class="mt-1 w-full rounded border border-gray-300 px-3 py-2 shadow-sm focus:border-forfait-600 focus:ring-forfait-600"
         />
       </div>
 
@@ -49,7 +49,7 @@ async function onSubmit() {
           v-model="password"
           type="password"
           required
-          class="mt-1 w-full rounded border-gray-300 shadow-sm focus:border-forfait-600 focus:ring-forfait-600"
+          class="mt-1 w-full rounded border border-gray-300 px-3 py-2 shadow-sm focus:border-forfait-600 focus:ring-forfait-600"
         />
       </div>
 

@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted } from "vue";
 import { useAlertesStore } from "../stores/alertes";
+import AppHeader from "../components/AppHeader.vue";
 
 const alertesStore = useAlertesStore();
 
@@ -14,14 +15,7 @@ onMounted(() => alertesStore.fetchAlertes());
 
 <template>
   <div class="min-h-screen bg-forfait-50">
-    <header class="bg-white shadow-sm flex items-center gap-6 px-6 py-4">
-      <router-link to="/" class="text-xl font-bold text-forfait-800">ForfaitFlow</router-link>
-      <router-link to="/clients" class="text-sm text-gray-600 hover:text-forfait-800">Clients</router-link>
-      <router-link to="/interventions/nouvelle" class="text-sm text-gray-600 hover:text-forfait-800">
-        Nouvelle intervention
-      </router-link>
-      <router-link to="/alertes" class="text-sm text-forfait-800 font-medium">Alertes</router-link>
-    </header>
+    <AppHeader />
 
     <div class="p-6 max-w-3xl mx-auto space-y-6">
       <h1 class="text-2xl font-bold text-forfait-800">Alertes actives</h1>
@@ -62,7 +56,7 @@ onMounted(() => alertesStore.fetchAlertes());
               </td>
             </tr>
             <tr v-if="!alertesStore.alertes.length">
-              <td colspan="4" class="px-4 py-6 text-center text-gray-400">
+              <td colspan="4" class="px-4 py-6 text-center text-gray-500">
                 Aucune alerte active — tous les clients sont sous le seuil de 80%.
               </td>
             </tr>

@@ -24,7 +24,7 @@ const bloc = defineModel({ required: true });
     <div class="grid grid-cols-2 gap-3">
       <div>
         <label class="block text-sm font-medium text-gray-700">Niveau</label>
-        <select v-model="bloc.niveau" class="mt-1 w-full rounded border-gray-300">
+        <select v-model="bloc.niveau" class="mt-1 w-full rounded border border-gray-300 px-3 py-2">
           <option value="N1">N1</option>
           <option value="N2">N2</option>
           <option value="N3">N3</option>
@@ -37,14 +37,14 @@ const bloc = defineModel({ required: true });
           type="number"
           min="1"
           required
-          class="mt-1 w-full rounded border-gray-300"
+          class="mt-1 w-full rounded border border-gray-300 px-3 py-2"
         />
       </div>
     </div>
 
     <div>
       <label class="block text-sm font-medium text-gray-700">Description</label>
-      <textarea v-model="bloc.description" rows="2" required class="mt-1 w-full rounded border-gray-300" />
+      <textarea v-model="bloc.description" rows="2" required class="mt-1 w-full rounded border border-gray-300 px-3 py-2" />
     </div>
   </div>
 </template>

@@ -1,6 +1,7 @@
 <script setup>
 import { ref, reactive, onMounted } from "vue";
 import { useClientsStore } from "../stores/clients";
+import AppHeader from "../components/AppHeader.vue";
 
 const store = useClientsStore();
 const showForm = ref(false);
@@ -66,14 +67,7 @@ async function onArchive(client) {
 
 <template>
   <div class="min-h-screen bg-forfait-50">
-    <header class="bg-white shadow-sm flex items-center gap-6 px-6 py-4">
-      <router-link to="/" class="text-xl font-bold text-forfait-800">ForfaitFlow</router-link>
-      <router-link to="/clients" class="text-sm text-forfait-800 font-medium">Clients</router-link>
-      <router-link to="/interventions/nouvelle" class="text-sm text-gray-600 hover:text-forfait-800">
-        Nouvelle intervention
-      </router-link>
-      <router-link to="/alertes" class="text-sm text-gray-600 hover:text-forfait-800">Alertes</router-link>
-    </header>
+    <AppHeader />
     <div class="p-6">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-2xl font-bold text-forfait-800">Gestion des clients</h1>
@@ -132,7 +126,7 @@ async function onArchive(client) {
             </td>
           </tr>
           <tr v-if="!store.clients.length">
-            <td colspan="6" class="px-4 py-6 text-center text-gray-400">Aucun client.</td>
+            <td colspan="6" class="px-4 py-6 text-center text-gray-500">Aucun client.</td>
           </tr>
         </tbody>
       </table>
@@ -153,17 +147,17 @@ async function onArchive(client) {
 
         <div>
           <label class="block text-sm font-medium text-gray-700">Nom</label>
-          <input v-model="form.nom" required class="mt-1 w-full rounded border-gray-300" />
+          <input v-model="form.nom" required class="mt-1 w-full rounded border border-gray-300 px-3 py-2" />
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-sm font-medium text-gray-700">Email</label>
-            <input v-model="form.email" type="email" class="mt-1 w-full rounded border-gray-300" />
+            <input v-model="form.email" type="email" class="mt-1 w-full rounded border border-gray-300 px-3 py-2" />
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700">Téléphone</label>
-            <input v-model="form.telephone" class="mt-1 w-full rounded border-gray-300" />
+            <input v-model="form.telephone" class="mt-1 w-full rounded border border-gray-300 px-3 py-2" />
           </div>
         </div>
 
@@ -173,7 +167,7 @@ async function onArchive(client) {
             v-model="form.date_debut_contrat"
             type="date"
             required
-            class="mt-1 w-full rounded border-gray-300"
+            class="mt-1 w-full rounded border border-gray-300 px-3 py-2"
           />
         </div>
 
@@ -184,7 +178,7 @@ async function onArchive(client) {
               v-model.number="form.forfait_n1_h"
               type="number"
               min="0"
-              class="mt-1 w-full rounded border-gray-300"
+              class="mt-1 w-full rounded border border-gray-300 px-3 py-2"
             />
           </div>
           <div>
@@ -193,14 +187,14 @@ async function onArchive(client) {
               v-model.number="form.forfait_n2_h"
               type="number"
               min="0"
-              class="mt-1 w-full rounded border-gray-300"
+              class="mt-1 w-full rounded border border-gray-300 px-3 py-2"
             />
           </div>
         </div>
 
         <div>
           <label class="block text-sm font-medium text-gray-700">Notes</label>
-          <textarea v-model="form.notes" rows="2" class="mt-1 w-full rounded border-gray-300" />
+          <textarea v-model="form.notes" rows="2" class="mt-1 w-full rounded border border-gray-300 px-3 py-2" />
         </div>
 
         <p v-if="error" class="text-sm text-red-600">{{ error }}</p>
