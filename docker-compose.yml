@@ -1,0 +1,86 @@
+services:
+  forfaitflow-db:
+    image: postgres:16-alpine
+    container_name: forfaitflow-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-forfaitflow}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME:-forfaitflow}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-forfaitflow}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - forfaitflow-net
+
+  forfaitflow-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: forfaitflow-backend
+    restart: unless-stopped
+    depends_on:
+      forfaitflow-db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg://${DB_USER:-forfaitflow}:${DB_PASSWORD}@forfaitflow-db:5432/${DB_NAME:-forfaitflow}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_ALGORITHM: HS256
+      JWT_EXPIRE_MINUTES: 1440
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      TZ: Europe/Paris
+    ports:
+      - "8093:8000"
+    networks:
+      - forfaitflow-net
+
+  forfaitflow-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: /api/v1
+    container_name: forfaitflow-frontend
+    restart: unless-stopped
+    depends_on:
+      - forfaitflow-backend
+    ports:
+      - "8092:80"
+    networks:
+      - forfaitflow-net
+
+  forfaitflow-backup:
+    image: postgres:16-alpine
+    container_name: forfaitflow-backup
+    restart: unless-stopped
+    depends_on:
+      forfaitflow-db:
+        condition: service_healthy
+    environment:
+      PGPASSWORD: ${DB_PASSWORD}
+      TZ: Europe/Paris
+    volumes:
+      - ./backups:/backups
+    entrypoint: >
+      sh -c "
+        while true; do
+          pg_dump -h forfaitflow-db -U ${DB_USER:-forfaitflow} ${DB_NAME:-forfaitflow} > /backups/dump_$$(date +%Y%m%d_%H%M%S).sql
+          find /backups -name 'dump_*.sql' -mtime +30 -delete
+          sleep 86400
+        done
+      "
+    networks:
+      - forfaitflow-net
+
+volumes:
+  pg_data:
+    driver: local
+
+networks:
+  forfaitflow-net:
+    driver: bridge
