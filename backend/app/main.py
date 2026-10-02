@@ -19,7 +19,12 @@ from app.models.user import User
 
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="ForfaitFlow API", version="0.1.0")
+# Doc interactive fermée en production : le port du backend peut être joignable
+# directement (hors du proxy frontend), donc /docs et /openapi.json seraient
+# sinon accessibles à quiconque atteint ce port.
+_docs = {"docs_url": None, "redoc_url": None, "openapi_url": None} if settings.environment == "production" else {}
+
+app = FastAPI(title="ForfaitFlow API", version="0.1.0", **_docs)
 
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
